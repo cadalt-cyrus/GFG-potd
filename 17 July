@@ -1,0 +1,49 @@
+class Solution {
+  public:
+    string FirstNonRepeating(string A){
+
+      // Code here
+
+      unordered_map<char,int>freq;
+
+      queue<int>q;
+
+      string ans="";
+
+      for(auto ele:A){
+
+          freq[ele]++;
+
+          q.push(ele);
+
+          while(!q.empty()){
+
+              if(freq[q.front()]>1){
+
+                  q.pop();
+
+              }
+
+              else{
+
+                  ans.push_back(q.front());
+
+                  break;
+
+              }
+
+          }
+
+          if(q.empty()){
+
+              ans.push_back('#'); }
+
+      }
+
+      return ans;
+
+  }
+
+ 
+
+};
