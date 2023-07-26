@@ -1,0 +1,19 @@
+unordered_map<int,int> mp;
+void start(Node *rt){
+    if (!rt)return;
+    if (rt->left)mp[rt->left->data] = rt->data;
+    if (rt->right)mp[rt->right->data] = rt->data;
+    start(rt->left);
+    start(rt->right);
+}
+int kthAncestor(Node *root, int k, int node)
+{
+    // Code here
+    start(root);
+    int res = node;
+    while (k--){
+        if (mp.find(res) == mp.end())return -1;
+        res = mp[res];
+    }
+    return res;
+}
